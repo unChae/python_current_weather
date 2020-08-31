@@ -1,11 +1,14 @@
 import requests
 
-lat = 35.838837
-lon = 128.623329
-api_key = "f05209d74bc04ecc620d5c695eeb82c8"
+url = "http://api.openweathermap.org/data/2.5/weather"
 
-url = "api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}"
+params = {
+  'lat':'35.838837',
+  'lon':'128.623329',
+  'appid':'f05209d74bc04ecc620d5c695eeb82c8'
+}
 
-res = requests.get(url)
+res = requests.get(url, params=params).json()
 
-print(res)
+print(res['weather'][0]['main'])
+print(res['sys']['country'],res['name'])
